@@ -1,0 +1,7 @@
+github.com/DennisVis/urlshort v0.0.0-20180819174551-927cdd178e5b h1:WP7TzEK28KZEttI3en1GyU/x7aSP14xJvMiCu2oj3kY=
+github.com/DennisVis/urlshort v0.0.0-20180819174551-927cdd178e5b/go.mod h1:sfAM9eLhi6oXwG2LIMMwuR56UAANzRDoMIIkpNuQWAU=
+github.com/boltdb/bolt v1.3.1 h1:JQmyP4ZBrce+ZQu0dY660FMfatumYDLun9hBCUVIkF4=
+github.com/boltdb/bolt v1.3.1/go.mod h1:clJnj/oiGkjum5o1McbSZDSLxVThjynRyGBgiAx27Ps=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
+gopkg.in/yaml.v2 v2.2.4 h1:/eiJrUcujPVeJ3xlSWaiNi3uSVmDGBK1pDHUHAnao1I=
+gopkg.in/yaml.v2 v2.2.4/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
