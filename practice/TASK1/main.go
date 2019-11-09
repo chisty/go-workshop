@@ -1,97 +1,57 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
+	"html/template"
+	"log"
+	"net/http"
 	"strings"
 )
 
 func main() {
-	//findMaxLen()
-	//distributeCoins()
-	testChannel()
+	http.HandleFunc("/", sayHello)
+	http.HandleFunc("/login", login)
+	log.Fatal(http.ListenAndServe(":3000", nil))
 }
 
-func testChannel() {
-	c := make(chan string)
-	go show(c)
-
-	fmt.Print(">")
-	for {
-		reader := bufio.NewReader(os.Stdin)
-		input, _ := reader.ReadString('\n')
-		if strings.HasPrefix(input, "stop") {
-			fmt.Println("Closing")
-			os.Exit(0)
-		}
-		c <- input
+func sayHello(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	fmt.Println(r.Form)
+	fmt.Println("path", r.URL.Path)
+	fmt.Println("scheme", r.URL.Scheme)
+	fmt.Println(r.Form["url_long"])
+	for k, v := range r.Form {
+		fmt.Println("key:", k)
+		fmt.Println("val:", strings.Join(v, ""))
 	}
+	fmt.Fprintf(w, "Hello astaxie!")
 }
 
-func show(c chan string) {
-	for i := range c {
-		fmt.Print("Showing value: ", i)
-		fmt.Print(">")
+func login(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Method: ", r.Method)
+	fmt.Println(r.Form)
+	r.ParseForm()
+	fmt.Println(r.Form)
+	if r.Method == "GET" {
+		t, _ := template.ParseFiles("login.gtpl")
+		t.Execute(w, nil)
+	} else {
+		// r.ParseForm()
+		fmt.Println("UserName: ", r.Form["username"])
+		fmt.Println("Password: ", r.Form["password"])
+
+		fmt.Println("UserName: ", r.FormValue("username"))
+		fmt.Println("Password: ", r.FormValue("password"))
 	}
+
+	// v := url.Values{}
+	// v.Set("name", "Ava")
+	// v.Add("friend", "Jess")
+	// v.Add("friend", "Sarah")
+	// v.Add("friend", "Zoe")
+	// // v.Encode() == "name=Ava&friend=Jess&friend=Sarah&friend=Zoe"
+	// fmt.Println("Encode= ", v.Encode())
+	// fmt.Println(v.Get("name"))
+	// fmt.Println(v.Get("friend"))
+	// fmt.Println(v["friend"])
 }
-
-func distributeCoins() {
-	for _, value := range users {
-		usedCoin := getCoinForUser(value)
-		if usedCoin > 10 {
-			usedCoin = 10
-		}
-		distribution[value] = usedCoin
-		coins -= usedCoin
-	}
-
-	fmt.Println(distribution)
-	fmt.Println("Coins left:", coins)
-}
-
-func getCoinForUser(name string) int {
-	usedCoin := 0
-	for _, c := range name {
-		switch c {
-		case 'a', 'e', 'A', 'E':
-			usedCoin++
-		case 'i', 'I':
-			usedCoin += 2
-		case 'o', 'O':
-			usedCoin += 3
-		case 'u', 'U':
-			usedCoin += 4
-		}
-	}
-	return usedCoin
-}
-
-func findMaxLen() {
-	maxLen := -1
-	for _, value := range names {
-		if len := len(value); len > maxLen {
-			maxLen = len
-		}
-	}
-
-	result := make([][]string, maxLen)
-	for _, value := range names {
-		len := len(value)
-		result[len-1] = append(result[len-1], value)
-	}
-
-	fmt.Println(result)
-}
-
-var (
-	coins = 50
-	users = []string{
-		"Matthew", "Sarah", "Augustus", "Heidi", "Emilie",
-		"Peter", "Giana", "Adriano", "Aaron", "Elizabeth",
-	}
-	distribution = make(map[string]int, len(users))
-
-	names = []string{"Katrina", "Evan", "Neil", "Adam", "Martin", "Matt", "Emma", "Isabella", "Emily", "Madison",
-		"Ava", "Olivia", "Sophia", "Abigail", "Elizabeth", "Chloe", "Samantha", "Addison", "Natalie", "Mia", "Alexis"}
-)
