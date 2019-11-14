@@ -2,32 +2,40 @@ package main
 
 import "fmt"
 
-type line struct {
-	value []int
+func main() {
+	reader := make(chan int)
+	operator := make(chan int)
+
+	go read(reader)
+	go operate(reader, operator)
+
+	for value := range operator {
+		fmt.Println(value)
+	}
 }
 
-func main() {
-
-	var item line
-	for i := 1; i < 10; i += 2 {
-		item.value = append(item.value, i)
+func read(r chan<- int) {
+	for i := 1; i < 11; i++ {
+		r <- i
 	}
+	close(r)
+}
 
-	newItem := item.GetNewSlice()
-	fmt.Println(item)
-	fmt.Println(newItem)
-	item.Update()
-	fmt.Println(item)
-	fmt.Println(newItem)
+func operate(r <-chan int, o chan<- int) {
+	for value := range r {
+		o <- value * value
+	}
+	close(o)
+}
 
-	// item := line{
-	// 	value: "Chisty",
-	// }
-	// newItem := item.reverse()
-	// fmt.Println(item)
-	// fmt.Println(newItem)
-	// item.reverseSelf()
-	// fmt.Println(item)
+func printer(r chan int) {
+	for value := range r {
+		fmt.Println(value)
+	}
+}
+
+type line struct {
+	value []int
 }
 
 func (data line) GetNewSlice() line {
@@ -43,26 +51,3 @@ func (data line) Update() {
 		data.value[i] += 10
 	}
 }
-
-// func (data line) reverse() line {
-// 	size := len(data.value)
-// 	text := make([]byte, size)
-
-// 	for i := 0; i < size; i++ {
-// 		text[i] = data.value[size-1-i]
-// 	}
-
-// 	return line{
-// 		value: string(text),
-// 	}
-// }
-
-// func (data *line) reverseSelf() {
-// 	size := len(data.value)
-// 	text := make([]byte, size)
-
-// 	for i := 0; i < size; i++ {
-// 		text[i] = data.value[size-1-i]
-// 	}
-// 	data.value = string(text)
-// }
