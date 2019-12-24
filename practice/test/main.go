@@ -2,16 +2,30 @@ package main
 
 import "fmt"
 
+type user struct {
+	name string
+}
+
 func main() {
-	reader := make(chan int)
-	operator := make(chan int)
+	u := &user{name: "Chisty"}
 
-	go read(reader)
-	go operate(reader, operator)
+	fmt.Println("Before: ", u)
+	change(u)
+	fmt.Println("After: ", u)
+	// reader := make(chan int)
+	// operator := make(chan int)
 
-	for value := range operator {
-		fmt.Println(value)
-	}
+	// go read(reader)
+	// go operate(reader, operator)
+
+	// for value := range operator {
+	// 	fmt.Println(value)
+	// }
+}
+
+func change(u *user) {
+	//u.name = "Ahmed Chisty"
+	*u = user{name: "Ahmed Chisty"}
 }
 
 func read(r chan<- int) {
