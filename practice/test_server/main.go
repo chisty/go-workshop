@@ -28,7 +28,7 @@ func main() {
 	r.HandleFunc("/login", login)
 	r.HandleFunc("/logout", logout)
 
-	http.ListenAndServe(":80", r)
+	http.ListenAndServe(":3000", r)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
