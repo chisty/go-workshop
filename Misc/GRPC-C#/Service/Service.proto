@@ -1,0 +1,18 @@
+﻿syntax= "proto3";
+
+option csharp_namespace="Service";
+
+message Request{
+	int64 a= 1;
+	int64 b= 2;
+}
+
+message Response{
+	int64 result= 1;
+}
+
+
+service CalculationService{
+	rpc Add(Request) returns (Response);
+	rpc Multiply(Request) returns (Response);
+}

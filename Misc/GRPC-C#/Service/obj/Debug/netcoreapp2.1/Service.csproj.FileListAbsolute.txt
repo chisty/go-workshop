@@ -1,0 +1,8 @@
+D:\CHISTY\GRPC\Service\bin\Debug\netcoreapp2.1\Service.deps.json
+D:\CHISTY\GRPC\Service\bin\Debug\netcoreapp2.1\Service.dll
+D:\CHISTY\GRPC\Service\bin\Debug\netcoreapp2.1\Service.pdb
+D:\CHISTY\GRPC\Service\obj\Debug\netcoreapp2.1\Service.csproj.CoreCompileInputs.cache
+D:\CHISTY\GRPC\Service\obj\Debug\netcoreapp2.1\Service.AssemblyInfoInputs.cache
+D:\CHISTY\GRPC\Service\obj\Debug\netcoreapp2.1\Service.AssemblyInfo.cs
+D:\CHISTY\GRPC\Service\obj\Debug\netcoreapp2.1\Service.dll
+D:\CHISTY\GRPC\Service\obj\Debug\netcoreapp2.1\Service.pdb

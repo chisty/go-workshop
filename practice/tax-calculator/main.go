@@ -59,6 +59,8 @@ func main() {
 	}
 
 	fmt.Println("Process complete")
+
+	reader.ReadBytes('\n')
 }
 
 func calculateTax(salary float64, taxBracket []bracket) float64 {
