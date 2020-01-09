@@ -880,11 +880,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CHISTY\\GRPC\\Client\\Client.csproj",
+      "projectUniqueName": "D:\\CHISTY\\workspace\\go-workshop\\Misc\\GRPC-C#\\Client\\Client.csproj",
       "projectName": "Client",
-      "projectPath": "D:\\CHISTY\\GRPC\\Client\\Client.csproj",
+      "projectPath": "D:\\CHISTY\\workspace\\go-workshop\\Misc\\GRPC-C#\\Client\\Client.csproj",
       "packagesPath": "C:\\Users\\ahmed\\.nuget\\packages\\",
-      "outputPath": "D:\\CHISTY\\GRPC\\Client\\obj\\",
+      "outputPath": "D:\\CHISTY\\workspace\\go-workshop\\Misc\\GRPC-C#\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -7,44 +7,44 @@
 
 using grpc = global::Grpc.Core;
 
-namespace Service {
+namespace Proto {
   public static partial class CalculationService
   {
-    static readonly string __ServiceName = "CalculationService";
+    static readonly string __ServiceName = "proto.CalculationService";
 
-    static readonly grpc::Marshaller<global::Service.Request> __Marshaller_Request = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Service.Request.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::Service.Response> __Marshaller_Response = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Service.Response.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Proto.Request> __Marshaller_proto_Request = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Proto.Request.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Proto.Response> __Marshaller_proto_Response = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Proto.Response.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::Service.Request, global::Service.Response> __Method_Add = new grpc::Method<global::Service.Request, global::Service.Response>(
+    static readonly grpc::Method<global::Proto.Request, global::Proto.Response> __Method_Add = new grpc::Method<global::Proto.Request, global::Proto.Response>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Add",
-        __Marshaller_Request,
-        __Marshaller_Response);
+        __Marshaller_proto_Request,
+        __Marshaller_proto_Response);
 
-    static readonly grpc::Method<global::Service.Request, global::Service.Response> __Method_Multiply = new grpc::Method<global::Service.Request, global::Service.Response>(
+    static readonly grpc::Method<global::Proto.Request, global::Proto.Response> __Method_Multiply = new grpc::Method<global::Proto.Request, global::Proto.Response>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Multiply",
-        __Marshaller_Request,
-        __Marshaller_Response);
+        __Marshaller_proto_Request,
+        __Marshaller_proto_Response);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
-      get { return global::Service.ServiceReflection.Descriptor.Services[0]; }
+      get { return global::Proto.ServiceReflection.Descriptor.Services[0]; }
     }
 
     /// <summary>Base class for server-side implementations of CalculationService</summary>
     [grpc::BindServiceMethod(typeof(CalculationService), "BindService")]
     public abstract partial class CalculationServiceBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::Service.Response> Add(global::Service.Request request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Proto.Response> Add(global::Proto.Request request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::Service.Response> Multiply(global::Service.Request request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::Proto.Response> Multiply(global::Proto.Request request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -74,35 +74,35 @@ namespace Service {
       {
       }
 
-      public virtual global::Service.Response Add(global::Service.Request request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Proto.Response Add(global::Proto.Request request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Add(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Service.Response Add(global::Service.Request request, grpc::CallOptions options)
+      public virtual global::Proto.Response Add(global::Proto.Request request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Add, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::Service.Response> AddAsync(global::Service.Request request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Proto.Response> AddAsync(global::Proto.Request request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return AddAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Service.Response> AddAsync(global::Service.Request request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Proto.Response> AddAsync(global::Proto.Request request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Add, null, options, request);
       }
-      public virtual global::Service.Response Multiply(global::Service.Request request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::Proto.Response Multiply(global::Proto.Request request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Multiply(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Service.Response Multiply(global::Service.Request request, grpc::CallOptions options)
+      public virtual global::Proto.Response Multiply(global::Proto.Request request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Multiply, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::Service.Response> MultiplyAsync(global::Service.Request request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::Proto.Response> MultiplyAsync(global::Proto.Request request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return MultiplyAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::Service.Response> MultiplyAsync(global::Service.Request request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::Proto.Response> MultiplyAsync(global::Proto.Request request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Multiply, null, options, request);
       }
@@ -128,8 +128,8 @@ namespace Service {
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     public static void BindService(grpc::ServiceBinderBase serviceBinder, CalculationServiceBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_Add, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Service.Request, global::Service.Response>(serviceImpl.Add));
-      serviceBinder.AddMethod(__Method_Multiply, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Service.Request, global::Service.Response>(serviceImpl.Multiply));
+      serviceBinder.AddMethod(__Method_Add, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Proto.Request, global::Proto.Response>(serviceImpl.Add));
+      serviceBinder.AddMethod(__Method_Multiply, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Proto.Request, global::Proto.Response>(serviceImpl.Multiply));
     }
 
   }

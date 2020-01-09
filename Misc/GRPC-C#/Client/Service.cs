@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Service {
+namespace Proto {
 
   /// <summary>Holder for reflection information generated from service.proto</summary>
   public static partial class ServiceReflection {
@@ -24,15 +24,16 @@ namespace Service {
     static ServiceReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg1zZXJ2aWNlLnByb3RvIh8KB1JlcXVlc3QSCQoBYRgBIAEoAxIJCgFiGAIg",
-            "ASgDIhoKCFJlc3BvbnNlEg4KBnJlc3VsdBgBIAEoAzJRChJDYWxjdWxhdGlv",
-            "blNlcnZpY2USGgoDQWRkEgguUmVxdWVzdBoJLlJlc3BvbnNlEh8KCE11bHRp",
-            "cGx5EgguUmVxdWVzdBoJLlJlc3BvbnNlQgqqAgdTZXJ2aWNlYgZwcm90bzM="));
+            "Cg1zZXJ2aWNlLnByb3RvEgVwcm90byIfCgdSZXF1ZXN0EgkKAWEYASABKAMS",
+            "CQoBYhgCIAEoAyIaCghSZXNwb25zZRIOCgZyZXN1bHQYASABKAMyaQoSQ2Fs",
+            "Y3VsYXRpb25TZXJ2aWNlEiYKA0FkZBIOLnByb3RvLlJlcXVlc3QaDy5wcm90",
+            "by5SZXNwb25zZRIrCghNdWx0aXBseRIOLnByb3RvLlJlcXVlc3QaDy5wcm90",
+            "by5SZXNwb25zZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Service.Request), global::Service.Request.Parser, new[]{ "A", "B" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Service.Response), global::Service.Response.Parser, new[]{ "Result" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Request), global::Proto.Request.Parser, new[]{ "A", "B" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Response), global::Proto.Response.Parser, new[]{ "Result" }, null, null, null)
           }));
     }
     #endregion
@@ -47,7 +48,7 @@ namespace Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Service.ServiceReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Proto.ServiceReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -204,7 +205,7 @@ namespace Service {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Service.ServiceReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Proto.ServiceReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

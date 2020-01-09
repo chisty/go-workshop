@@ -1,6 +1,6 @@
 syntax= "proto3";
 
-option csharp_namespace="Service";
+package proto;
 
 message Request{
 	int64 a= 1;

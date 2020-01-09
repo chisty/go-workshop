@@ -15,7 +15,7 @@ type calculationServer struct{}
 func main() {
 	fmt.Println("Hello GRPC")
 
-	listener, err := net.Listen("tcp", ":5001")
+	listener, err := net.Listen("tcp", ":8080")
 	if err != nil {
 		log.Fatal("Unable to listen on port 5001")
 	}
@@ -31,12 +31,12 @@ func main() {
 
 func (s *calculationServer) Add(ctx context.Context, req *proto.Request) (*proto.Response, error) {
 	a, b := req.GetA(), req.GetB()
-	fmt.Printf("Request with value %d and %d\n", a, b)
+	fmt.Printf("Add Request with value %d and %d\n", a, b)
 	return &proto.Response{Result: a + b}, nil
 }
 
 func (s *calculationServer) Multiply(ctx context.Context, req *proto.Request) (*proto.Response, error) {
 	a, b := req.GetA(), req.GetB()
-	fmt.Printf("Request with value %d and %d\n", a, b)
+	fmt.Printf("Multiply Request with value %d and %d\n", a, b)
 	return &proto.Response{Result: a * b}, nil
 }

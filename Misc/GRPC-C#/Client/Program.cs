@@ -1,6 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using Grpc.Core;
-using Service;
+using Proto;
 
 
 namespace Client
@@ -9,23 +10,48 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("GRPC Client. Enter 2 integer separated by space. (Enter blank to exit)");
 
-            var channel = new Channel("127.0.0.1:5001", ChannelCredentials.Insecure);
+            var channel = new Channel("localhost:8080", ChannelCredentials.Insecure);
             var client = new CalculationService.CalculationServiceClient(channel);
 
-            var request = new Request {A = 2, B = 3};
-            var reply = client.Add(request);
-            Console.WriteLine("Result from Go Server: "+reply.Result);
 
-            reply = client.Multiply(request);
-            Console.WriteLine("Result from Go Server: " + reply.Result);
+            while (true)
+            {
+                var input = Console.ReadLine();
+                if (string.IsNullOrEmpty(input)) break;
 
-            Console.ReadKey();
+                var tokens = input.Split(' ');
+                long a, b;
+
+                if (tokens.Length == 2 && long.TryParse(tokens[0], out a) && long.TryParse(tokens[1], out b))
+                {
+                    Add(a, b, client);
+                    Multiply(a,b,client);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input: "+input);
+                }
+            }
         }
+
+
+        private static void Add(long a, long b, CalculationService.CalculationServiceClient client)
+        {
+            var request = new Request { A = a, B = b };
+            var reply = client.Add(request);
+            Console.WriteLine("Result of Addition (From Go Server): " + reply.Result);
+        }
+        private static void Multiply(long a, long b, CalculationService.CalculationServiceClient client)
+        {
+            var request = new Request { A = a, B = b };
+            var reply = client.Multiply(request);
+            Console.WriteLine("Result of Multiplication (From Go Server): " + reply.Result);
+        }
+
     }
+    
 
-
-
-    //tools\protoc.exe -I protos protos\test.proto --csharp_out=output --grpc_out=output --plugin=protoc-gen-grpc=tools\grpc_csharp_plugin.exe
+    //tools\protoc.exe -I proto proto\service.proto --csharp_out=proto --grpc_out=proto --plugin=protoc-gen-grpc=tools\grpc_csharp_plugin.exe
 }
