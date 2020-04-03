@@ -43,10 +43,10 @@ func main() {
 		log.Fatal("Invalid allowance input. ", err)
 	}
 
-	taxableIncome := salary*12 - allowance
+	taxableIncome := salary*13 - allowance
 	tax := calculateTax(taxableIncome, brackets)
 
-	fmt.Printf("Salary Per Month %.2f.\nSalary Per Year %.2f\n", salary, salary*12)
+	fmt.Printf("Salary Per Month %.2f.\nSalary Per Year %.2f\n", salary, salary*13)
 	fmt.Printf("Total Allowance: %.2f\nTotal Taxable Income: %.2f\n", allowance, taxableIncome)
 
 	fmt.Printf("Tax Per Year %.2f\nTax Per Month Tax %.2f\n", tax, tax/12)
