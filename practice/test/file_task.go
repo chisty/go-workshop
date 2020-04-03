@@ -1,12 +1,11 @@
 package main
 
-import "net/http"
-
-import "fmt"
-
-import "os"
-
-import "io"
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+)
 
 func main() {
 	fileURL := "https://www.iclarified.com/images/news/58010/275840/275840.jpg"
