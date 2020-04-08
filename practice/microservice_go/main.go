@@ -1,16 +1,50 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
+	"os/signal"
+	"time"
+
+	"github.com/chisty/microservice_go/handlers"
 )
 
 func main() {
-	http.HandleFunc("/", func(http.ResponseWriter, *http.Request) {
-		log.Println("Hello from the Server")
-	})
-	http.ListenAndServe(":9090", nil)
+	l := log.New(os.Stdout, "product-api", log.LstdFlags)
+	hh := handlers.NewHello(l)
+	gh := handlers.NewGoodBye(l)
 
-	fmt.Println("Server started ...")
+	sm := http.NewServeMux()
+	sm.Handle("/", hh)
+	sm.Handle("/bye", gh)
+
+	s := &http.Server{
+		Addr:         ":9090",
+		Handler:      sm,
+		IdleTimeout:  120 * time.Second,
+		ReadTimeout:  1 * time.Second,
+		WriteTimeout: 1 * time.Second,
+	}
+
+	go func() {
+		fmt.Println("Server started ...")
+		err := s.ListenAndServe()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	sigChan := make(chan os.Signal)
+
+	signal.Notify(sigChan, os.Interrupt)
+	signal.Notify(sigChan, os.Kill)
+
+	sig := <-sigChan
+	l.Println("Received command to terminate Server. Graceful shutdown ongoing: ", sig)
+
+	tc, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	s.Shutdown(tc)
 }
