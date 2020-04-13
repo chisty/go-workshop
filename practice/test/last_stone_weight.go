@@ -8,42 +8,24 @@ func main() {
 }
 
 func lastStoneWeight(stones []int) int {
-	l := len(stones)
-
-	if l == 0 {
-		return 0
-	}
-	if l == 1 {
-		return stones[0]
-	}
-
-	heap := newMaxHeap(l)
+    heap := newMaxHeap(len(stones))
 
 	for _, val := range stones {
 		heap.insert(val)
 	}
 
-	for {
-		if heap.size == 0 {
-			return 0
-		}
+	for heap.size > 1{
 		first := heap.remove()
 		second := heap.remove()
-		if second == -1 {
-			return first
-		}
 		if first != second {
-			heap.insert(getDifference(first, second))
+			heap.insert(first-second)
 		}
 	}
-
-}
-
-func getDifference(a, b int) int {
-	if a > b {
-		return a - b
-	}
-	return b - a
+    
+    if heap.size == 1{
+        return heap.heap[0]
+    }
+    return 0
 }
 
 func (m *maxHeap) insert(item int) {
