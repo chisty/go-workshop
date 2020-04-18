@@ -1,37 +1,45 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	fmt.Println("Last Stone Weight")
-	fmt.Println("res= ", lastStoneWeight([]int{2, 7, 4, 1, 8, 1}))
+	fmt.Println("Max Heap")
+
+	testMaxHeap([]int{2, 7, 14, 11, 8, 10})
+	testMaxHeap([]int{1, 2, 3, 4, 5, 6, 7})
+	testMaxHeap([]int{100, 17, 19, 23, 50, 17})
 }
 
-func lastStoneWeight(stones []int) int {
-    heap := newMaxHeap(len(stones))
+func testMaxHeap(input []int) {
+	fmt.Println("Input= ", input)
+	heap := newMaxHeap(len(input))
 
-	for _, val := range stones {
-		heap.insert(val)
+	for _, value := range input {
+		heap.insert(value)
+	}
+	fmt.Println("Result= ", heap.heap)
+	fmt.Println("DownHeapify=")
+
+	for i := 0; i < len(input); i++ {
+		res := heap.remove()
+		// fmt.Println("Max= ", res, "Heap= ", heap.heap)
+		fmt.Printf("%d\t", res)
 	}
 
-	for heap.size > 1{
-		first := heap.remove()
-		second := heap.remove()
-		if first != second {
-			heap.insert(first-second)
-		}
-	}
-    
-    if heap.size == 1{
-        return heap.heap[0]
-    }
-    return 0
+	fmt.Println("\n-----------------------------------------------------------------------------")
 }
 
-func (m *maxHeap) insert(item int) {
+func (m *maxHeap) insert(item int) error {
+	if m.isFull() {
+		return fmt.Errorf("Cannot insert. Heap is full")
+	}
+
 	m.heap = append(m.heap, item)
 	m.upHeapify(m.size)
 	m.size++
+	return nil
 }
 
 func (m *maxHeap) remove() int {
