@@ -5,24 +5,24 @@ import "fmt"
 func main() {
 	fmt.Println("Valid Parenthesis String")
 	doTest("(())(())(((()*()()()))()((()()(*()())))(((*)()")
-	// doTest("(((()*())))((()(((()(()))()**(*)())))())()()*")
-	// doTest("(()())")
-	// doTest("")
-	// doTest("(())")
-	// doTest("(***")
-	// doTest("((**")
+	doTest("(((()*())))((()(((()(()))()**(*)())))())()()*")
+	doTest("(()())")
+	doTest("")
+	doTest("(())")
+	doTest("(***")
+	doTest("((**")
 
-	// doTest("((***))(((")
-	// doTest("((***)***)(((")
+	doTest("((***))(((")
+	doTest("((***)***)(((")
 
-	// doTest("(*))")
-	// doTest("*(*)**))")
-	// doTest("(*)")
-	// doTest("(())**(()))**")
-	// doTest("(((***))***())")
-	// doTest("(((***)***())")
-	// doTest("(((**)*()))")
-	// doTest("(((**)*()")
+	doTest("(*))")
+	doTest("*(*)**))")
+	doTest("(*)")
+	doTest("(())**(()))**")
+	doTest("(((***))***())")
+	doTest("(((***)***())")
+	doTest("(((**)*()))")
+	doTest("(((**)*()")
 
 }
 
@@ -33,6 +33,35 @@ func doTest(s string) {
 }
 
 func checkValidString(s string) bool {
+	input, l, count := []rune(s), len(s), 0
+
+	for i := 0; i < l; i++ {
+		if input[i] == '(' || input[i] == '*' {
+			count++
+		} else {
+			count--
+		}
+		if count < 0 {
+			return false
+		}
+	}
+
+	count = 0
+	for i := l - 1; i > -1; i-- {
+		if input[i] == ')' || input[i] == '*' {
+			count++
+		} else {
+			count--
+		}
+		if count < 0 {
+			return false
+		}
+	}
+
+	return true
+}
+
+func checkValidString_not_accepted(s string) bool {
 	in, l, star, left, right, flag := []rune(s), len(s), 0, 0, 0, false
 
 	for i := 0; i < l; i++ {
