@@ -227,3 +227,21 @@ func GoInLoopOne() {
 
 	wg.Wait()
 }
+
+func DataRace() {
+	x := 0
+
+	go func() {
+		for {
+			x = x + 15
+		}
+	}()
+
+	go func() {
+		for {
+			x = x - 15
+		}
+	}()
+
+	time.Sleep(5 * time.Second)
+}
